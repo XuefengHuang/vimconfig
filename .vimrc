@@ -11,6 +11,7 @@ nnoremap qqq :qa!<CR>
 
 nnoremap qo :q!<CR>
 nnoremap gw <C-w><C-w>
+noremap <C-d> :sh<CR>
 "基于插件的补全
 noremap <C-f> <C-x><C-o>
 
