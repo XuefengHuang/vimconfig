@@ -18,6 +18,7 @@ noremap <C-f> <C-x><C-o>
 set nu
 filetype plugin indent on
 filetype off
+syntax enable
 
 "插件管理
 call plug#begin('~/.vim/plugged')
@@ -47,9 +48,14 @@ let g:gutentags_modules = ['ctags']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 
+
 Plug 'ervandew/supertab'
 Plug 'kien/ctrlp.vim'
 
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_fmt_command = "goimports"
 call plug#end()
 
 " if hidden is not set, TextEdit might fail.
