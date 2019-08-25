@@ -2,6 +2,7 @@
 set nocompatible
 set noswapfile
 autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
 "配置主题\背景颜色
 
@@ -56,7 +57,21 @@ Plug 'kien/ctrlp.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Go stuff
 let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_term_enabled = 1
+let g:go_list_type = "quickfix"
+let g:go_gocode_propose_source = 1
+
+au FileType go  nmap gr :GoReferrers<CR>
+au FileType go  nmap gd :GoDef<CR>
+au FileType go  nmap gi :GoInfo<CR>
 call plug#end()
 
 " if hidden is not set, TextEdit might fail.
