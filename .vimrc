@@ -59,6 +59,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Go stuff
 let g:go_fmt_command = "goimports"
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:go_autodetect_gopath = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
