@@ -6,3 +6,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 npm i intelephense -g
 #install ag
 brew install the_silver_searcher
+#install ctags
+brew install ctags
