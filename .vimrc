@@ -1,6 +1,8 @@
 "总体配置
 set nocompatible
 set noswapfile
+set backspace=indent,eol,start
+
 autocmd! bufwritepost .vimrc source ~/.vimrc
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
