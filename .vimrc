@@ -6,6 +6,9 @@ set backspace=indent,eol,start
 autocmd! bufwritepost .vimrc source ~/.vimrc
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 "配置主题\背景颜色
 
 "自定义快捷键
