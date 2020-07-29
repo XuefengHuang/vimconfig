@@ -2,12 +2,13 @@
 set nocompatible
 set noswapfile
 set backspace=indent,eol,start
-
+set textwidth=80
 autocmd! bufwritepost .vimrc source ~/.vimrc
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
-
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"set colorcolumn=81
 
 "配置主题\背景颜色
 
@@ -30,14 +31,19 @@ syntax enable
 "插件管理
 call plug#begin('~/.vim/plugged')
 
+" Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/taglist.vim'
 noremap <F6> :TlistToggle<CR>
 
 Plug 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
+Plug 'tpope/vim-fugitive'
 
 Plug 'vim-scripts/The-NERD-tree'
 nnoremap <F3> :NERDTreeToggle<CR>
+let NERDTreeChDirMode=1
+let NERDTreeShowBookmarks=1
 
 Plug 'ludovicchabant/vim-gutentags'
 "" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
@@ -55,9 +61,10 @@ let g:gutentags_modules = ['ctags']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 
-
 Plug 'ervandew/supertab'
 Plug 'kien/ctrlp.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/Conque-Shell'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
@@ -74,10 +81,11 @@ let g:go_highlight_build_constraints = 1
 let g:go_term_enabled = 1
 let g:go_list_type = "quickfix"
 let g:go_gocode_propose_source = 1
+let g:go_auto_type_info = 1
 
-au FileType go  nmap gr :GoReferrers<CR>
-au FileType go  nmap gd :GoDef<CR>
-au FileType go  nmap gi :GoInfo<CR>
+"au FileType go  nmap gi :GoInfo<CR>
+" au FileType go  nmap gr :GoReferrers<CR>
+"au FileType go  nmap gd :GoDef<CR>
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -262,3 +270,7 @@ let g:tagbar_type_go = {
 	\ 'ctagsbin'  : 'gotags',
 	\ 'ctagsargs' : '-sort -silent'
 \ }
+
+autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
+
+
