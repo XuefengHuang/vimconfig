@@ -2,15 +2,24 @@
 set nocompatible
 set noswapfile
 set backspace=indent,eol,start
-set textwidth=80
+set textwidth=120
+set colorcolumn=120
+set clipboard=unnamed
 autocmd! bufwritepost .vimrc source ~/.vimrc
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+"golint
+set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+"autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+
+
 "set colorcolumn=81
 
 "配置主题\背景颜色
+"set background=light
+"colorscheme solarized8_high 
 
 "自定义快捷键
 nnoremap ss :w<CR>
@@ -38,6 +47,8 @@ noremap <F6> :TlistToggle<CR>
 
 Plug 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme="bubblegum"
 Plug 'tpope/vim-fugitive'
 
 Plug 'vim-scripts/The-NERD-tree'
@@ -69,6 +80,8 @@ Plug 'vim-scripts/Conque-Shell'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'buoto/gotests-vim'
+
 " Go stuff
 let g:go_fmt_command = "goimports"
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
@@ -95,6 +108,8 @@ let g:tagbar_width=30
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 nnoremap <F8> :TagbarToggle<CR>
 call plug#end()
+
+colorscheme dracula
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -272,5 +287,4 @@ let g:tagbar_type_go = {
 \ }
 
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
-
 
